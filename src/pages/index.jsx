@@ -1,25 +1,24 @@
 import * as React from 'react';
-import HomeLayout from '../components/HomeLayout';
+import Layout from '../components/Layout';
 import SEO from '../components/SEO';
 import Typography from '@mui/material/Typography';
 import {
-  Backdrop,
   Card,
   CardActions,
   CardContent,
   CardMedia,
-  CircularProgress,
   Container,
   Link,
 } from '@mui/material';
 import Grid from '@mui/material/Grid';
-import { useGetUsersQuery } from '../services/users';
+import { useGetUsersQuery } from '../app/services/users';
 import UserDialog from '../components/index/UserDialog';
+import LoadingBackdrop from '../components/LoadingBackdrop';
 
 export default function Users() {
   const { data, isFetching, isLoading } = useGetUsersQuery();
   return (
-    <HomeLayout>
+    <Layout>
       <SEO title={'Users'} />
       <Container
         maxWidth={'sm'}
@@ -72,14 +71,7 @@ export default function Users() {
           . The 2-second delay is intentional.
         </Typography>
       </Container>
-      {(isFetching || isLoading) && (
-        <Backdrop
-          sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
-          open={isFetching}
-        >
-          <CircularProgress color="inherit" />
-        </Backdrop>
-      )}
+      <LoadingBackdrop open={isFetching || isLoading} />
       <Container sx={{ py: 8 }} maxWidth="md">
         <Grid container spacing={4}>
           {data?.map(({ id, first_name, last_name, avatar }) => (
@@ -102,6 +94,6 @@ export default function Users() {
           ))}
         </Grid>
       </Container>
-    </HomeLayout>
+    </Layout>
   );
 }

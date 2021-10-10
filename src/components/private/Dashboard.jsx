@@ -1,13 +1,13 @@
-import * as React from 'react';
-import Layout from '../components/Layout';
-import SEO from '../components/SEO';
-import Typography from '@mui/material/Typography';
+import React from 'react';
+import Layout from '../Layout';
+import SEO from '../SEO';
 import { Container } from '@mui/material';
+import Typography from '@mui/material/Typography';
 
-export default function Template() {
+const Dashboard = () => {
   return (
     <Layout>
-      <SEO title={'Template'} />
+      <SEO title={'Dashboard'} />
       <Container
         maxWidth={'sm'}
         sx={{
@@ -21,7 +21,7 @@ export default function Template() {
           color="text.primary"
           gutterBottom
         >
-          Template
+          Welcome to Dashboard!
         </Typography>
         <Typography
           variant="h5"
@@ -30,9 +30,11 @@ export default function Template() {
           paragraph
           gutterBottom
         >
-          This is a sample template page.
+          Hi there! This page can only be viewed if you are authenticated.
         </Typography>
       </Container>
     </Layout>
   );
-}
+};
+
+export default Dashboard;

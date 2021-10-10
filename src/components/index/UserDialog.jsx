@@ -12,7 +12,7 @@ import {
   Typography,
 } from '@mui/material';
 import { useEffect } from 'react';
-import { useLazyGetUserQuery } from '../../services/users';
+import { useLazyGetUserQuery } from '../../app/services/users';
 import UserDialogForm from './UserDialogForm';
 
 export default function UserDialog({ id }) {
@@ -49,34 +49,6 @@ export default function UserDialog({ id }) {
       trigger(id);
     }
   }, [open]);
-
-  // useEffect(() => {
-  //   console.log('originalArgs', originalArgs);
-  //   console.log('error', error);
-  //   console.log('data', data);
-  //   console.log('requestId', requestId);
-  //   console.log('endpointName', endpointName);
-  //   console.log('startedTimeStamp', startedTimeStamp);
-  //   console.log('fulfilledTimeStamp', fulfilledTimeStamp);
-  //   console.log('isUninitialized', isUninitialized);
-  //   console.log('isLoading', isLoading);
-  //   console.log('isFetching', isFetching);
-  //   console.log('isSuccess', isSuccess);
-  //   console.log('isError', isError);
-  // }, [
-  //   originalArgs,
-  //   error,
-  //   data,
-  //   requestId,
-  //   endpointName,
-  //   startedTimeStamp,
-  //   fulfilledTimeStamp,
-  //   isUninitialized,
-  //   isLoading,
-  //   isFetching,
-  //   isSuccess,
-  //   isError,
-  // ]);
 
   return (
     <div>

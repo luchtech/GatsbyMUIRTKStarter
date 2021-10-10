@@ -11,28 +11,24 @@ import {
 import storage from 'redux-persist/lib/storage';
 
 import counterReducer from '../features/counter/counterSlice';
-import { usersApi } from '../services/users';
-import { registerApi } from '../services/register';
-import { loginApi } from '../services/login';
+import authReducer from '../features/authentication/authSlice';
+import { usersApi } from './services/users';
 
 import { setupListeners } from '@reduxjs/toolkit/query';
+import { authApi } from './services/auth';
 
 const rootReducer = combineReducers({
   counter: counterReducer,
+  auth: authReducer,
   [usersApi.reducerPath]: usersApi.reducer,
-  [registerApi.reducerPath]: registerApi.reducer,
-  [loginApi.reducerPath]: loginApi.reducer,
+  [authApi.reducerPath]: authApi.reducer,
 });
 
 const persistConfig = {
   key: 'root',
   version: 1,
   storage,
-  blacklist: [
-    usersApi.reducerPath,
-    registerApi.reducerPath,
-    loginApi.reducerPath,
-  ],
+  blacklist: [usersApi.reducerPath, authApi.reducerPath],
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
@@ -44,7 +40,7 @@ export const store = configureStore({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
-    }).concat(usersApi.middleware, registerApi.middleware, loginApi.middleware),
+    }).concat(usersApi.middleware, authApi.middleware),
 });
 
 setupListeners(store.dispatch);

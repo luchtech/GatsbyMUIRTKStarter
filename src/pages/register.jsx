@@ -6,15 +6,15 @@ import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import HomeLayout from '../components/HomeLayout';
+import Layout from '../components/Layout';
 import SEO from '../components/SEO';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { useRegisterUserMutation } from '../services/register';
 import { registerSchema } from '../schemas/register';
 import LoadingButton from '@mui/lab/LoadingButton';
 import { useEffect } from 'react';
 import Link from '../components/Link';
+import { useRegisterUserMutation } from '../app/services/auth';
 
 export default function SignUp() {
   const [registerUser, { data: registerData, isLoading }] =
@@ -44,7 +44,7 @@ export default function SignUp() {
   }, [registerData]);
 
   return (
-    <HomeLayout>
+    <Layout>
       <SEO title={'Register'} />
       <Container maxWidth={'sm'}>
         <Box
@@ -127,6 +127,6 @@ export default function SignUp() {
           </Box>
         </Box>
       </Container>
-    </HomeLayout>
+    </Layout>
   );
 }

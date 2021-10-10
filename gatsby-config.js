@@ -25,6 +25,10 @@ module.exports = {
         display: `standalone`,
       },
     },
+    {
+      resolve: `gatsby-plugin-create-client-paths`,
+      options: { prefixes: [`/app/*`] },
+    },
     'gatsby-plugin-sharp',
     'gatsby-transformer-sharp',
     {
@@ -56,6 +60,12 @@ module.exports = {
             cache: true,
           },
         },
+      },
+    },
+    {
+      resolve: `gatsby-plugin-s3`,
+      options: {
+        bucketName: 'gatsbymuistarter',
       },
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality

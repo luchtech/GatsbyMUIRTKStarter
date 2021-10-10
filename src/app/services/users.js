@@ -3,7 +3,16 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 export const usersApi = createApi({
   reducerPath: 'users',
   baseQuery: fetchBaseQuery({
-    baseUrl: 'https://reqres.in/api/users',
+    baseUrl: process.env.GATSBY_BACKEND_API + '/users',
+    prepareHeaders: (headers, { getState }) => {
+      // By default, if we have a token in the store, let's use that for authenticated requests
+      const token = getState().auth.token;
+      if (token) {
+        console.log('token', token);
+        headers.set('authorization', `Bearer ${token}`);
+      }
+      return headers;
+    },
   }),
   tagTypes: ['User'],
   endpoints(build) {
@@ -11,7 +20,7 @@ export const usersApi = createApi({
       getUsers: build.query({
         query(page) {
           return {
-            url: '/',
+            url: `/`,
             params: {
               page,
               delay: 2,
@@ -35,7 +44,7 @@ export const usersApi = createApi({
       createUser: build.mutation({
         query(body) {
           return {
-            url: '/',
+            url: '/users',
             body,
           };
         },
@@ -43,7 +52,7 @@ export const usersApi = createApi({
       updateUser: build.mutation({
         query({ id, ...body }) {
           return {
-            url: id,
+            url: `/${id}`,
             body,
             method: 'PUT',
           };
@@ -52,7 +61,7 @@ export const usersApi = createApi({
       deleteUser: build.mutation({
         query(id) {
           return {
-            url: id,
+            url: `/${id}`,
             method: 'DELETE',
           };
         },

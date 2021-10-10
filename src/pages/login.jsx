@@ -10,16 +10,24 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Img from '../images/calendar.jpeg';
 import { useForm } from 'react-hook-form';
-import { useLoginUserMutation } from '../services/login';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { loginSchema } from '../schemas/login';
 import SEO from '../components/SEO';
-import { useEffect } from 'react';
 import Link from '../components/Link';
+import { useDispatch } from 'react-redux';
+import { setCredentials } from '../features/authentication/authSlice';
+import { useLoginUserMutation } from '../app/services/auth';
+import { navigate } from '@reach/router';
+import useAuth from '../app/hooks/useAuth';
+import LoadingBackdrop from '../components/LoadingBackdrop';
+import { useLayoutEffect } from 'react';
 
-export default function SignInSide() {
-  const [loginUser, { data: loginData, isLoading: isLoggingIn }] =
-    useLoginUserMutation();
+export default function Login() {
+  // Auth
+
+  const [loginUser, { isLoading: isLoggingIn }] = useLoginUserMutation();
+  const { isLoggedIn, auth } = useAuth();
+  const dispatch = useDispatch();
 
   const {
     register,
@@ -32,22 +40,29 @@ export default function SignInSide() {
 
   const onSubmit = (data) => {
     console.log('Logging in...', data);
-    loginUser(data);
+    loginUser(data)
+      .unwrap()
+      .then((res) => {
+        console.log('Result', res);
+        dispatch(setCredentials(res));
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
-  useEffect(() => {
-    if (loginData) {
-      console.log('Received', loginData);
-    } else {
-      console.log('No data');
+  useLayoutEffect(() => {
+    console.log('Logged In:', isLoggedIn);
+    if (isLoggedIn) {
+      navigate(-1).catch(navigate('/'));
     }
-    return () => {};
-  }, [loginData]);
+  }, [isLoggedIn, auth]);
 
   return (
     <Grid container component="main" sx={{ height: '100vh' }}>
       <SEO title={'Login'} />
       <CssBaseline />
+      <LoadingBackdrop open={isLoggedIn} />
       <Grid
         item
         xs={false}
@@ -99,20 +114,13 @@ export default function SignInSide() {
             />
             <TextField
               margin="normal"
-              // required
               fullWidth
-              // name="password"
               label="Password"
               type="password"
               id="password"
               autoComplete="current-password"
               {...register('password')}
             />
-            {/*{isError && (*/}
-            {/*  <Typography color={'red'} variant={'h6'}>*/}
-            {/*    James*/}
-            {/*  </Typography>*/}
-            {/*)}*/}
             <LoadingButton
               type="submit"
               fullWidth

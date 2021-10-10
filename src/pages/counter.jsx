@@ -1,5 +1,5 @@
 import React from 'react';
-import HomeLayout from '../components/HomeLayout';
+import Layout from '../components/Layout';
 import { ButtonGroup, Container, Link, Paper, TextField } from '@mui/material';
 import Button from '@mui/material/Button';
 import { useDispatch, useSelector } from 'react-redux';
@@ -33,7 +33,7 @@ const Counter = () => {
   };
 
   return (
-    <HomeLayout>
+    <Layout>
       <SEO title={'Counter'} />
       <Container
         maxWidth={'sm'}
@@ -113,7 +113,7 @@ const Counter = () => {
           </ButtonGroup>
         </Paper>
       </Container>
-    </HomeLayout>
+    </Layout>
   );
 };
 
