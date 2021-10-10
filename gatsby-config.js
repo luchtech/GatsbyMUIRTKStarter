@@ -1,3 +1,7 @@
+require('dotenv').config({
+  path: `.env.${process.env.NODE_ENV}`,
+});
+
 module.exports = {
   siteMetadata: {
     title: 'Gatsby MUI Template',
@@ -65,7 +69,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-s3`,
       options: {
-        bucketName: 'gatsbymuistarter',
+        bucketName: process.env.AWS_BUCKET_NAME,
       },
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality
