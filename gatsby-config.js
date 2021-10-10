@@ -69,7 +69,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-s3`,
       options: {
-        bucketName: process.env.AWS_BUCKET_NAME,
+        bucketName: process.env.AWS_BUCKET_NAME ?? '',
       },
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality
