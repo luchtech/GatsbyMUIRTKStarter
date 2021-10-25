@@ -1,26 +1,26 @@
-import * as React from 'react';
-import Avatar from '@mui/material/Avatar';
-import LoadingButton from '@mui/lab/LoadingButton';
-import CssBaseline from '@mui/material/CssBaseline';
-import TextField from '@mui/material/TextField';
-import Paper from '@mui/material/Paper';
-import Box from '@mui/material/Box';
-import Grid from '@mui/material/Grid';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import Typography from '@mui/material/Typography';
-import Img from '../images/calendar.jpeg';
-import { useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
-import { loginSchema } from '../schemas/login';
-import SEO from '../components/SEO';
-import Link from '../components/Link';
-import { useDispatch } from 'react-redux';
-import { setCredentials } from '../features/authentication/authSlice';
-import { useLoginUserMutation } from '../app/services/auth';
-import { navigate } from '@reach/router';
-import useAuth from '../app/hooks/useAuth';
-import LoadingBackdrop from '../components/LoadingBackdrop';
-import { useLayoutEffect } from 'react';
+import * as React from "react";
+import Avatar from "@mui/material/Avatar";
+import LoadingButton from "@mui/lab/LoadingButton";
+import CssBaseline from "@mui/material/CssBaseline";
+import TextField from "@mui/material/TextField";
+import Paper from "@mui/material/Paper";
+import Box from "@mui/material/Box";
+import Grid from "@mui/material/Grid";
+import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
+import Typography from "@mui/material/Typography";
+import Img from "../images/calendar.jpeg";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { loginSchema } from "../schemas/login";
+import Seo from "../components/Seo";
+import Link from "../components/Link";
+import { useDispatch } from "react-redux";
+import { setCredentials } from "../features/authentication/authSlice";
+import { useLoginUserMutation } from "../app/services/auth";
+import { navigate } from "@reach/router";
+import useAuth from "../app/hooks/useAuth";
+import LoadingBackdrop from "../components/LoadingBackdrop";
+import { useLayoutEffect } from "react";
 
 export default function Login() {
   // Auth
@@ -39,11 +39,11 @@ export default function Login() {
   });
 
   const onSubmit = (data) => {
-    console.log('Logging in...', data);
+    console.log("Logging in...", data);
     loginUser(data)
       .unwrap()
       .then((res) => {
-        console.log('Result', res);
+        console.log("Result", res);
         dispatch(setCredentials(res));
       })
       .catch((err) => {
@@ -52,15 +52,15 @@ export default function Login() {
   };
 
   useLayoutEffect(() => {
-    console.log('Logged In:', isLoggedIn);
+    console.log("Logged In:", isLoggedIn);
     if (isLoggedIn) {
-      navigate(-1).catch(navigate('/'));
+      navigate(-1).catch(navigate("/"));
     }
   }, [isLoggedIn, auth]);
 
   return (
-    <Grid container component="main" sx={{ height: '100vh' }}>
-      <SEO title={'Login'} />
+    <Grid container component="main" sx={{ height: "100vh" }}>
+      <Seo title={"Login"} />
       <CssBaseline />
       <LoadingBackdrop open={isLoggedIn} />
       <Grid
@@ -70,13 +70,13 @@ export default function Login() {
         md={7}
         sx={{
           backgroundImage: `url(${Img})`,
-          backgroundRepeat: 'no-repeat',
+          backgroundRepeat: "no-repeat",
           backgroundColor: (t) =>
-            t.palette.mode === 'light'
+            t.palette.mode === "light"
               ? t.palette.grey[50]
               : t.palette.grey[900],
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
+          backgroundSize: "cover",
+          backgroundPosition: "center",
         }}
       />
       <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
@@ -84,12 +84,12 @@ export default function Login() {
           sx={{
             my: 8,
             mx: 4,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+          <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
@@ -107,8 +107,7 @@ export default function Login() {
               id="email"
               label="Email Address"
               autoComplete="email"
-              autoFocus
-              {...register('email')}
+              {...register("email")}
               error={!!errors?.email}
               helperText={errors?.email?.message}
             />
@@ -119,7 +118,7 @@ export default function Login() {
               type="password"
               id="password"
               autoComplete="current-password"
-              {...register('password')}
+              {...register("password")}
             />
             <LoadingButton
               type="submit"

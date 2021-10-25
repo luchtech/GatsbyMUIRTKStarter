@@ -1,15 +1,15 @@
-import * as React from 'react';
-import Layout from '../components/Layout';
-import SEO from '../components/SEO';
-import Typography from '@mui/material/Typography';
-import { Container } from '@mui/material';
+import * as React from "react";
+import Layout from "../components/layouts/Layout";
+import Typography from "@mui/material/Typography";
+import { Container } from "@mui/material";
+import Seo from "../components/Seo";
 
 export default function Template() {
   return (
     <Layout>
-      <SEO title={'Template'} />
+      <Seo title={"Template"} />
       <Container
-        maxWidth={'sm'}
+        maxWidth={"sm"}
         sx={{
           py: (theme) => theme.spacing(3),
         }}

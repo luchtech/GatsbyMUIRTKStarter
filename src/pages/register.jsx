@@ -1,20 +1,20 @@
-import * as React from 'react';
-import Avatar from '@mui/material/Avatar';
-import TextField from '@mui/material/TextField';
-import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
-import Layout from '../components/Layout';
-import SEO from '../components/SEO';
-import { useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
-import { registerSchema } from '../schemas/register';
-import LoadingButton from '@mui/lab/LoadingButton';
-import { useEffect } from 'react';
-import Link from '../components/Link';
-import { useRegisterUserMutation } from '../app/services/auth';
+import * as React from "react";
+import Avatar from "@mui/material/Avatar";
+import TextField from "@mui/material/TextField";
+import Grid from "@mui/material/Grid";
+import Box from "@mui/material/Box";
+import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
+import Typography from "@mui/material/Typography";
+import Container from "@mui/material/Container";
+import Layout from "../components/layouts/Layout";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { registerSchema } from "../schemas/register";
+import LoadingButton from "@mui/lab/LoadingButton";
+import { useEffect } from "react";
+import Link from "../components/Link";
+import { useRegisterUserMutation } from "../app/services/auth";
+import Seo from "../components/Seo";
 
 export default function SignUp() {
   const [registerUser, { data: registerData, isLoading }] =
@@ -30,33 +30,33 @@ export default function SignUp() {
   });
 
   const onSubmit = (data) => {
-    console.log('Registering...', data);
+    console.log("Registering...", data);
     registerUser(data);
   };
 
   useEffect(() => {
     if (registerData) {
-      console.log('Received', registerData);
+      console.log("Received", registerData);
     } else {
-      console.log('No data');
+      console.log("No data");
     }
     return () => {};
   }, [registerData]);
 
   return (
     <Layout>
-      <SEO title={'Register'} />
-      <Container maxWidth={'sm'}>
+      <Seo title={"Register"} />
+      <Container maxWidth={"sm"}>
         <Box
           sx={{
             my: 8,
             mx: 4,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+          <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
@@ -75,7 +75,6 @@ export default function SignUp() {
                   fullWidth
                   id="firstName"
                   label="First Name"
-                  autoFocus
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
@@ -92,7 +91,7 @@ export default function SignUp() {
                   id="email"
                   label="Email Address"
                   autoComplete="email"
-                  {...register('email')}
+                  {...register("email")}
                   error={!!errors?.email}
                   helperText={errors?.email?.message}
                 />
@@ -104,7 +103,7 @@ export default function SignUp() {
                   type="password"
                   id="password"
                   label="Password"
-                  {...register('password')}
+                  {...register("password")}
                 />
               </Grid>
             </Grid>

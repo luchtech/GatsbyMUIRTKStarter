@@ -1,7 +1,6 @@
-import * as React from 'react';
-import Layout from '../components/Layout';
-import SEO from '../components/SEO';
-import Typography from '@mui/material/Typography';
+import * as React from "react";
+import Layout from "../components/layouts/Layout";
+import Typography from "@mui/material/Typography";
 import {
   Card,
   CardActions,
@@ -9,19 +8,20 @@ import {
   CardMedia,
   Container,
   Link,
-} from '@mui/material';
-import Grid from '@mui/material/Grid';
-import { useGetUsersQuery } from '../app/services/users';
-import UserDialog from '../components/index/UserDialog';
-import LoadingBackdrop from '../components/LoadingBackdrop';
+} from "@mui/material";
+import Grid from "@mui/material/Grid";
+import { useGetUsersQuery } from "../app/services/users";
+import UserDialog from "../components/index/UserDialog";
+import LoadingBackdrop from "../components/LoadingBackdrop";
+import Seo from "../components/Seo";
 
 export default function Users() {
   const { data, isFetching, isLoading } = useGetUsersQuery();
   return (
     <Layout>
-      <SEO title={'Users'} />
+      <Seo title={"Home"} />
       <Container
-        maxWidth={'sm'}
+        maxWidth={"sm"}
         sx={{
           py: (theme) => theme.spacing(3),
         }}
@@ -42,28 +42,28 @@ export default function Users() {
           paragraph
           gutterBottom
         >
-          The users displayed in this page are fetched from{' '}
+          The users displayed in this page are fetched from{" "}
           {
-            <Link href={'https://reqres.in/'} target={'_blank'}>
+            <Link href={"https://reqres.in/"} target={"_blank"}>
               ReqRes API
             </Link>
-          }{' '}
-          by using{' '}
+          }{" "}
+          by using{" "}
           {
             <Link
               href={
-                'https://redux-toolkit.js.org/rtk-query/api/created-api/hooks#usequery'
+                "https://redux-toolkit.js.org/rtk-query/api/created-api/hooks#usequery"
               }
-              target={'_blank'}
+              target={"_blank"}
             >
               useQuery
             </Link>
-          }{' '}
-          of{' '}
+          }{" "}
+          of{" "}
           {
             <Link
-              href={'https://redux-toolkit.js.org/rtk-query/overview'}
-              target={'_blank'}
+              href={"https://redux-toolkit.js.org/rtk-query/overview"}
+              target={"_blank"}
             >
               RTK Query
             </Link>
@@ -80,7 +80,7 @@ export default function Users() {
                 <CardMedia component="img" image={avatar} alt={first_name} />
                 <CardContent>
                   <Typography gutterBottom variant="h5" component="div">
-                    {first_name + ' ' + last_name}
+                    {first_name + " " + last_name}
                   </Typography>
                   <Typography variant="body2" color="text.secondary">
                     This is just a random information from a fake API.

@@ -1,16 +1,16 @@
-import React from 'react';
-import Layout from '../components/Layout';
-import { ButtonGroup, Container, Link, Paper, TextField } from '@mui/material';
-import Button from '@mui/material/Button';
-import { useDispatch, useSelector } from 'react-redux';
+import React from "react";
+import Layout from "../components/layouts/Layout";
+import { ButtonGroup, Container, Link, Paper, TextField } from "@mui/material";
+import Button from "@mui/material/Button";
+import { useDispatch, useSelector } from "react-redux";
 import {
   decrement,
   decrementByAmount,
   increment,
   incrementByAmount,
-} from '../features/counter/counterSlice';
-import SEO from '../components/SEO';
-import Typography from '@mui/material/Typography';
+} from "../features/counter/counterSlice";
+import Typography from "@mui/material/Typography";
+import Seo from "../components/Seo";
 
 const Counter = () => {
   const count = useSelector((state) => state.counter.value);
@@ -34,9 +34,9 @@ const Counter = () => {
 
   return (
     <Layout>
-      <SEO title={'Counter'} />
+      <Seo title={"Counter"} />
       <Container
-        maxWidth={'sm'}
+        maxWidth={"sm"}
         sx={{
           py: (theme) => theme.spacing(3),
         }}
@@ -57,18 +57,18 @@ const Counter = () => {
           paragraph
           gutterBottom
         >
-          This counter app uses{' '}
+          This counter app uses{" "}
           {
-            <Link href={'https://redux-toolkit.js.org/'} target={'_blank'}>
+            <Link href={"https://redux-toolkit.js.org/"} target={"_blank"}>
               Redux Toolkit
             </Link>
-          }{' '}
+          }{" "}
           to demonstrate data manipulation at frontend level. Also, with the
-          help of{' '}
+          help of{" "}
           {
             <Link
-              href={'https://www.npmjs.com/package/redux-persist'}
-              target={'_blank'}
+              href={"https://www.npmjs.com/package/redux-persist"}
+              target={"_blank"}
             >
               Redux Persist
             </Link>
@@ -86,14 +86,14 @@ const Counter = () => {
         >
           <TextField
             aria-readonly={true}
-            label={'Count'}
+            label={"Count"}
             value={count}
-            variant={'outlined'}
+            variant={"outlined"}
             inputProps={{
               style: {
-                textAlign: 'center',
-                fontSize: 'xxx-large',
-                fontWeight: 'bold',
+                textAlign: "center",
+                fontSize: "xxx-large",
+                fontWeight: "bold",
               },
             }}
             fullWidth

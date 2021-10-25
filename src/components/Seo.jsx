@@ -1,9 +1,9 @@
-import * as React from 'react';
-import PropTypes from 'prop-types';
-import { Helmet } from 'react-helmet';
-import useSiteMetadata from '../app/hooks/useSiteMetadata';
+import * as React from "react";
+import PropTypes from "prop-types";
+import { Helmet } from "react-helmet";
+import useSiteMetadata from "../app/hooks/useSiteMetadata";
 
-function SEO({ description, lang, meta, title }) {
+function Seo({ description, lang, meta, title }) {
   const {
     author,
     description: defaultDescription,
@@ -57,17 +57,17 @@ function SEO({ description, lang, meta, title }) {
   );
 }
 
-SEO.defaultProps = {
+Seo.defaultProps = {
   lang: `en`,
   meta: [],
   description: ``,
 };
 
-SEO.propTypes = {
+Seo.propTypes = {
   description: PropTypes.string,
   lang: PropTypes.string,
   meta: PropTypes.arrayOf(PropTypes.object),
   title: PropTypes.string.isRequired,
 };
 
-export default SEO;
+export default Seo;

@@ -3,10 +3,13 @@ import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
 import CssBaseline from '@mui/material/CssBaseline';
 import { ThemeProvider } from '@mui/material/styles';
-// import lightTheme from '../../src/themes/lightTheme';
+import lightTheme from '../../src/themes/lightTheme';
 import darkTheme from '../../src/themes/darkTheme';
+import useThemeSwitcher from "../../src/app/hooks/useThemeSwitcher";
 
 export default function TopLayout(props) {
+  const { is_dark_theme } = useThemeSwitcher()
+
   return (
     <React.Fragment>
       <Helmet>
@@ -16,7 +19,7 @@ export default function TopLayout(props) {
           rel="stylesheet"
         />
       </Helmet>
-      <ThemeProvider theme={darkTheme}>
+      <ThemeProvider theme={is_dark_theme ? darkTheme : lightTheme}>
         {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
         <CssBaseline />
         {props.children}

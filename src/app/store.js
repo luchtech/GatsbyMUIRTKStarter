@@ -12,14 +12,16 @@ import storage from 'redux-persist/lib/storage';
 
 import counterReducer from '../features/counter/counterSlice';
 import authReducer from '../features/authentication/authSlice';
+import themeReducer from '../features/themeSwitcher/themeSlice';
 import { usersApi } from './services/users';
+import { authApi } from './services/auth';
 
 import { setupListeners } from '@reduxjs/toolkit/query';
-import { authApi } from './services/auth';
 
 const rootReducer = combineReducers({
   counter: counterReducer,
   auth: authReducer,
+  theme: themeReducer,
   [usersApi.reducerPath]: usersApi.reducer,
   [authApi.reducerPath]: authApi.reducer,
 });

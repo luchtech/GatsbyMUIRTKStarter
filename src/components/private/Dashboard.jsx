@@ -1,15 +1,15 @@
-import React from 'react';
-import Layout from '../Layout';
-import SEO from '../SEO';
-import { Container } from '@mui/material';
-import Typography from '@mui/material/Typography';
+import React from "react";
+import Seo from "../Seo";
+import { Container} from "@mui/material";
+import Typography from "@mui/material/Typography";
+import LayoutWithDrawer from "../layouts/LayoutWithDrawer";
 
 const Dashboard = () => {
   return (
-    <Layout>
-      <SEO title={'Dashboard'} />
+    <LayoutWithDrawer>
+      <Seo title={"Dashboard"} />
       <Container
-        maxWidth={'sm'}
+        maxWidth={"md"}
         sx={{
           py: (theme) => theme.spacing(3),
         }}
@@ -33,7 +33,7 @@ const Dashboard = () => {
           Hi there! This page can only be viewed if you are authenticated.
         </Typography>
       </Container>
-    </Layout>
+    </LayoutWithDrawer>
   );
 };
 
